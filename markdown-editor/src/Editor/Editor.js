@@ -1,17 +1,21 @@
 import ReactAce from 'react-ace-editor';
 import React, { Component } from 'react';
+import ReactHtmlParser from 'react-html-parser';
+import marked from 'marked';
 
 class Editor extends Component {
   constructor(props) {
     super(props);
     this.state = {
       text: ``,
+      output: ``,
     }
     this.onChange = this.onChange.bind(this);
   }
 
   state = {
     text: ``,
+    output: ``,
   }
 
   onChange() {
@@ -22,19 +26,23 @@ class Editor extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state.text);
+    // figure out how to get this to the other side of the Ace Editor
+    // console.log(marked(this.state.text, this.props.mkd_render));
+    const output = marked(this.state.text, this.props.mkd_render);
+    console.log(output);
+    this.setState({output});
   }
 
   render() {
     return (
       <>
         <ReactAce
-          mode="javascript"
+          mode="text"
           theme="twilight"
           setReadOnly={false}
           onChange={this.onChange}
           style={{ height: '400px' }}
-          ref={instance => { this.ace = instance; }} // Let's put things into scope
+          ref={instance => { this.ace = instance; }}
         />
         <button
           type="submit"
@@ -42,6 +50,9 @@ class Editor extends Component {
         >
           Update
         </button>
+        <div>
+          {ReactHtmlParser(this.state.output)}
+        </div> 
       </>      
     );
   }

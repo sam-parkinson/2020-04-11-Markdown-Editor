@@ -1,5 +1,6 @@
 import React from 'react';
 import Editor from './Editor/Editor';
+import marked from 'marked';
 
 // todo:
 // make markdown displayer
@@ -9,7 +10,9 @@ import Editor from './Editor/Editor';
 function App() {
   return (
     <main className='App'>
-      <Editor />
+      <Editor 
+        mkd_render={new marked.Renderer()}
+      />
     </main>
   );
 }
