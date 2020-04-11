@@ -2,10 +2,11 @@ import React from 'react';
 import Editor from './Editor/Editor';
 import marked from 'marked';
 
-// todo:
-// make markdown displayer
-// wire up displayer to editor
-// pretty up app
+// Next major TODOs
+
+// break down components
+
+// add actual styling
 
 function App() {
   return (

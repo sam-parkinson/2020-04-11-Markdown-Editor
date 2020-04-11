@@ -26,10 +26,7 @@ class Editor extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    // figure out how to get this to the other side of the Ace Editor
-    // console.log(marked(this.state.text, this.props.mkd_render));
     const output = marked(this.state.text, this.props.mkd_render);
-    console.log(output);
     this.setState({output});
   }
 
